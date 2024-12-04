@@ -5,7 +5,7 @@ import { cn } from "../lib/utils";
 
 export const Logo = ({ className }) => {
   return (
-    <Link to="/" className={cn("flex items-center gap-2", className)}>
+    <Link to="/" className={cn("flex items-center gap-2 text-left", className)}>
       <div className="image w-12">
         <img src={logoImage} className="w-full -mb-[4%]" />
         <div
@@ -15,7 +15,7 @@ export const Logo = ({ className }) => {
           }}
         ></div>
       </div>
-      <div className="text-xl font-black">
+      <div className="content text-xl font-black">
         <span className="text-primary">Sports</span>
         <span className="text-secondary">Sphere</span>
         <p className="text-xs text-neutral/75 font-medium">Gear Up. Play Hard. Win Big.</p>

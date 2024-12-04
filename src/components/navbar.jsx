@@ -5,8 +5,8 @@ import { Menu } from "lucide-react";
 
 export const Navbar = () => {
   return (
-    <div className="container">
-      <nav className="navbar">
+    <div className="sticky top-0 z-10 shadow-md">
+      <nav className="navbar container">
         <div className="navbar-start">
           <Logo />
         </div>
