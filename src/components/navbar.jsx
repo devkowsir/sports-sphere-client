@@ -74,10 +74,10 @@ export const Navbar = () => {
             </>
           ) : (
             <>
-              <Link to={"/register"} className="btn btn-secondary">
+              <Link to={"/auth/register"} className="btn btn-secondary">
                 Register
               </Link>
-              <Link to={"/login"} className="btn btn-primary">
+              <Link to={"/auth/login"} className="btn btn-primary">
                 Login
               </Link>
             </>

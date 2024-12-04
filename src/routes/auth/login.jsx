@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { FaEnvelope, FaEye, FaEyeSlash, FaGoogle, FaKey } from "react-icons/fa6";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { AuthLayout } from "../../layouts/auth";
 import { SiteName } from "../../config";
 import { useAuthContext } from "../../contexts/auth";
 import { isValidEmail, isValidPassword } from "../../utils/input-validator";
@@ -67,7 +66,7 @@ export const LoginRoute = () => {
   }, [mode]);
 
   return (
-    <AuthLayout>
+    <>
       <h1 className="mb-8 text-center text-3xl font-semibold sm:text-4xl">{mode == "login" ? "Login" : "Reset"}</h1>
       <form onSubmit={handleSubmit} className="w-full space-y-4">
         <label className="input input-bordered flex items-center gap-2">
@@ -105,10 +104,10 @@ export const LoginRoute = () => {
       </button>
       <p className="text-center">
         Don't have an account?{" "}
-        <Link className="text-secondary" to={{ pathname: "/register" }} replace>
+        <Link className="text-secondary" to={{ pathname: "/auth/register" }} replace>
           Register
         </Link>
       </p>
-    </AuthLayout>
+    </>
   );
 };
