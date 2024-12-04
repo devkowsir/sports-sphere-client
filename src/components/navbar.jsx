@@ -1,9 +1,12 @@
 import React from "react";
+import { FaBars } from "react-icons/fa6";
 import { Link, NavLink } from "react-router-dom";
+import { useAuthContext } from "../contexts/auth";
 import { Logo } from "./logo";
-import { Menu } from "lucide-react";
 
 export const Navbar = () => {
+  const { user, logout } = useAuthContext();
+
   return (
     <div className="sticky top-0 z-10 shadow-md">
       <nav className="navbar container">
@@ -29,7 +32,7 @@ export const Navbar = () => {
         <div className="navbar-end flex gap-4">
           <div className="dropdown dropdown-end lg:hidden">
             <div tabIndex={0} role="button" className="btn m-1">
-              <Menu />
+              <FaBars className="text-xl" />
             </div>
             <ul className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
               <li>
@@ -46,12 +49,39 @@ export const Navbar = () => {
               </li>
             </ul>
           </div>
-          <Link to={"/register"} className="btn btn-secondary">
-            Register
-          </Link>
-          <Link to={"/login"} className="btn btn-primary">
-            Login
-          </Link>
+          {user ? (
+            <>
+              <Link to={"/profile"} className="avatar tooltip tooltip-bottom" data-tip={user.displayName}>
+                <div className="w-8 rounded-full sm:w-12">
+                  {user.photoURL ? (
+                    <img src={user.photoURL} referrerPolicy="no-referrer" alt={user.displayName} />
+                  ) : (
+                    <div className="w-full h-full flex justify-center items-center bg-neutral text-neutral-content rounded-full">
+                      <span className="text-lg sm:text-2xl">
+                        {user.displayName
+                          .split(" ")
+                          .map((part) => part[0].toUpperCase())
+                          .join("")
+                          .slice(0, 2)}
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </Link>
+              <button className="btn btn-neutral btn-sm sm:btn-md" onClick={logout}>
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to={"/register"} className="btn btn-secondary">
+                Register
+              </Link>
+              <Link to={"/login"} className="btn btn-primary">
+                Login
+              </Link>
+            </>
+          )}
         </div>
       </nav>
     </div>
