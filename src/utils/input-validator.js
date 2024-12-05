@@ -10,15 +10,14 @@ export const isValidName = (name) => {
 export const isValidPhotoURL = async (url) => {
   if (typeof url !== "string") throw new Error("URL must be string");
 
-  return new Promise((res, rej) => {
-    fetch(url, { referrerPolicy: "no-referrer" })
-      .then((response) => {
-        if (!response.ok) return rej("Invalid URL");
-        if (response.headers.get("content-type").startsWith("image/")) return res(true);
-        return rej("URL does not gives us a valid image resource");
-      })
-      .catch(() => rej("Something went wrong during fetching!"));
-  });
+  try {
+    const response = await fetch(url, { referrerPolicy: "no-referrer" });
+    if (!response.ok) throw new Error("Invalid Image URL.");
+    if (response.headers.get("content-type").startsWith("image/")) return true;
+    throw new Error("Invalid Image URL.");
+  } catch (error) {
+    throw new Error("Network error.");
+  }
 };
 
 export const isValidEmail = (email) => {

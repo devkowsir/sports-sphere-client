@@ -39,7 +39,7 @@ export const RegisterRoute = () => {
         type: "success",
       });
     } catch (error) {
-      if (error instanceof Error) toast(error.message, { type: "error" });
+      if (error.message || error.msg) toast(error.message || error.msg, { type: "error" });
       console.error(error.message, error);
     }
   };
