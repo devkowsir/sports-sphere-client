@@ -5,7 +5,7 @@ import { SiteName } from "../../config";
 import { useAuthContext } from "../../contexts/auth";
 import { isValidName, isValidPhotoURL } from "../../utils/input-validator";
 
-const ProfileRoute = () => {
+export const ProfileRoute = () => {
   const { user, updateProfile, reloadUser } = useAuthContext();
   const [formState, setFormState] = useState({
     fields: { name: user.displayName, "photo-url": user.photoURL },
@@ -127,5 +127,3 @@ const ProfileRoute = () => {
     </section>
   );
 };
-
-export default ProfileRoute;

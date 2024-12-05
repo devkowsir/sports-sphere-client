@@ -2,7 +2,7 @@ import React from "react";
 import { Navigate, useLocation } from "react-router-dom";
 import { useAuthContext } from "../contexts/auth";
 
-const Protected = ({ children }) => {
+export const Protected = ({ children }) => {
   const { pathname } = useLocation();
   const { user, isLoading } = useAuthContext();
 
@@ -16,5 +16,3 @@ const Protected = ({ children }) => {
 
   return children;
 };
-
-export default Protected;
