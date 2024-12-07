@@ -89,7 +89,7 @@ export const Swiper = () => {
   };
 
   return (
-    <div className={`relative h-[55rem] overflow-hidden cursor-grab xl:h-[40rem]`}>
+    <div className={`mb-12 relative h-[55rem] overflow-hidden cursor-grab xl:h-[40rem]`}>
       <LazyMotion features={loadFeatures} strict>
         <AnimatePresence initial={false} custom={direction}>
           <m.div
