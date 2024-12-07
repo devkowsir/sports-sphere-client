@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const categories = [
   { name: "Tennis", image: "/images/sport-category-img-1.jpg", category: "/category/tennis" },
@@ -9,11 +9,17 @@ const categories = [
 ];
 
 export const Categories = () => {
+  const navigate = useNavigate();
+
   return (
     <section className="mb-24">
-      <ul className="container grid gap-4 text-white font-semibold sm:grid-cols-2 lg:grid-cols-4">
+      <ul className="container grid gap-4 text-white font-semibold sm:grid-cols-2 xl:grid-cols-4">
         {categories.map(({ name, image, category }) => (
-          <li key={category} className="group relative h-56 p-8 flex flex-col overflow-hidden rounded-xl">
+          <li
+            key={category}
+            className="group relative h-56 p-8 flex flex-col overflow-hidden rounded-lg cursor-pointer"
+            onClick={() => navigate(category)}
+          >
             <h3 className="mt-auto mb-4 text-xl">{name}</h3>
             <Link
               to={category}
@@ -22,7 +28,7 @@ export const Categories = () => {
               Go to category
             </Link>
             <div
-              className="absolute inset-0 -z-[1] bg-center bg-cover"
+              className="absolute inset-0 -z-[1] bg-top bg-cover group-[&:hover]:scale-110 transition"
               style={{ backgroundImage: `url(${image})` }}
             ></div>
           </li>
