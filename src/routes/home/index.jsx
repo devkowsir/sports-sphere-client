@@ -1,5 +1,5 @@
-import { Carousel } from "../../components/carousel";
+import { Swiper } from "./swiper";
 
 export const HomeRoute = () => {
-  return <Carousel />;
+  return <Swiper />;
 };
