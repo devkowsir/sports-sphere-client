@@ -1,5 +1,6 @@
+import { Articles } from "./articles";
 import { Categories } from "./categories";
-import { Hot } from "./hot";
+import { HotProduct } from "./hot-product";
 import { PopularProducts } from "./popular-products";
 import { Swiper } from "./swiper";
 
@@ -9,7 +10,8 @@ export const HomeRoute = () => {
       <Swiper />
       <Categories />
       <PopularProducts />
-      <Hot />
+      <HotProduct />
+      <Articles />
     </>
   );
 };
