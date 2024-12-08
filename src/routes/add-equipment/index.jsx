@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FaPlus, FaTrash } from "react-icons/fa6";
 import { SectionHeading } from "../../components/section-heading";
 import { useAuthContext } from "../../contexts/auth";
+import { BackendUrl } from "../../config";
+import { toast } from "react-toastify";
 
 export const AddEquipmentRoute = () => {
   const { user } = useAuthContext();
@@ -25,7 +27,6 @@ export const AddEquipmentRoute = () => {
   };
 
   const handleCustomizationChange = (e) => {
-    console.log(e);
     const index = parseInt(e.target.dataset["index"]);
     if (index >= formState.customizations.length) return;
     setFormState((state) => ({
@@ -43,7 +44,6 @@ export const AddEquipmentRoute = () => {
 
   const handleCustomizationRemove = (e) => {
     const index = parseInt(e.target.dataset["index"]);
-    console.log(e.target);
     if (index >= formState.customizations.length) return;
     setFormState((state) => ({
       ...state,
@@ -51,7 +51,7 @@ export const AddEquipmentRoute = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const itemName = e.target["itemName"].value;
@@ -73,19 +73,30 @@ export const AddEquipmentRoute = () => {
     const userName = e.target["userName"].value;
     const userEmail = e.target["userEmail"].value;
 
-    console.log({
-      itemName,
-      categoryName,
-      image,
-      price,
-      rating,
-      processingTime,
-      stockStatus,
-      customizations,
-      description,
-      userName,
-      userEmail,
-    });
+    try {
+      const res = await fetch(`${BackendUrl}/api/equipment`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          itemName,
+          categoryName,
+          image,
+          price,
+          rating,
+          processingTime,
+          stockStatus,
+          description,
+          customizations,
+          userName,
+          userEmail,
+        }),
+      });
+      const data = await res.json();
+      console.log(data);
+      toast("Equipment saved to db", { type: "success" });
+    } catch (e) {
+      toast("Error saving equipment", { type: "error" });
+    }
   };
 
   return (
