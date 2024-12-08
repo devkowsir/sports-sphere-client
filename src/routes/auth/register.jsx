@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { SiteName } from "../../config";
 import { useAuthContext } from "../../contexts/auth";
+import { saveUserToDB } from "../../lib/utils";
 import { isValidEmail, isValidName, isValidPassword, isValidPhotoURL } from "../../utils/input-validator";
 
 export const RegisterRoute = () => {
@@ -29,6 +30,7 @@ export const RegisterRoute = () => {
       await registerUser({ email, password });
       await updateProfile({ displayName, photoURL });
       reloadUser();
+      await saveUserToDB({ displayName, email, photoURL });
 
       const searchParams = new URLSearchParams(location.search);
       let redirectTo = new URL(searchParams.get("redirectTo") ?? "/", window.location.origin).pathname;
@@ -46,7 +48,10 @@ export const RegisterRoute = () => {
 
   const handleGoogleLogin = async () => {
     try {
-      await loginWithGoogle();
+      const {
+        user: { displayName, email, photoURL },
+      } = await loginWithGoogle();
+      await saveUserToDB({ displayName, email, photoURL });
 
       const searchParams = new URLSearchParams(location.search);
       let redirectTo = new URL(searchParams.get("redirectTo") ?? "/", window.location.origin).pathname;
