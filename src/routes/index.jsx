@@ -6,6 +6,7 @@ import { AddEquipmentRoute } from "./add-equipment";
 import { AllEquipmentsRoute } from "./all-equipments";
 import { LoginRoute } from "./auth/login";
 import { RegisterRoute } from "./auth/register";
+import { EditEquipmentRoute } from "./edit-equipment";
 import { HomeRoute } from "./home";
 import { MyEquipmentsRoute } from "./my-equipments";
 import { ProductRoute } from "./product";
@@ -31,6 +32,14 @@ const router = createBrowserRouter([
         element: (
           <Protected>
             <AddEquipmentRoute />
+          </Protected>
+        ),
+      },
+      {
+        path: "/edit-equipment/:id",
+        element: (
+          <Protected>
+            <EditEquipmentRoute />
           </Protected>
         ),
       },
