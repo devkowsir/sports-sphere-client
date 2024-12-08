@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { SectionHeading } from "../../components/section-heading";
 import { BackendUrl } from "../../config";
 import { useAuthContext } from "../../contexts/auth";
+import { toast } from "react-toastify";
 
 export const MyEquipmentsRoute = () => {
   const [sortMode, setSortMode] = useState(null);
@@ -22,6 +23,20 @@ export const MyEquipmentsRoute = () => {
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      const res = await fetch(`${BackendUrl}/api/equipment/${id}`, {
+        method: "DELETE",
+      });
+      const data = await res.json();
+      console.log(data);
+      toast("Equipment deleted", { type: "success" });
+    } catch (e) {
+      console.error(e);
+      toast("Error deleting equipment", { type: "error" });
+    }
+  };
 
   console.log(sortedProducts);
 
@@ -105,7 +120,7 @@ export const MyEquipmentsRoute = () => {
                       <Link to={`/edit-equipment/${_id}`} className="btn btn-primary">
                         <FaEdit />
                       </Link>
-                      <button className="btn btn-error">
+                      <button className="btn btn-error" onClick={() => handleDelete(_id)}>
                         <FaTrash />
                       </button>
                     </div>
