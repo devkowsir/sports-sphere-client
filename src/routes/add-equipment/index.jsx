@@ -3,7 +3,7 @@ import { FaPlus, FaTrash } from "react-icons/fa6";
 import { SectionHeading } from "../../components/section-heading";
 import { useAuthContext } from "../../contexts/auth";
 
-export const AddEquipment = () => {
+export const AddEquipmentRoute = () => {
   const { user } = useAuthContext();
 
   const [formState, setFormState] = useState({

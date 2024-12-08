@@ -2,12 +2,13 @@ import { createBrowserRouter } from "react-router-dom";
 import { Protected } from "../components/protected";
 import { AuthLayout } from "../layouts/auth";
 import { HomeLayout } from "../layouts/home";
+import { AddEquipmentRoute } from "./add-equipment";
 import { AllEquipmentsRoute } from "./all-equipments";
 import { LoginRoute } from "./auth/login";
 import { RegisterRoute } from "./auth/register";
 import { HomeRoute } from "./home";
+import { ProductRoute } from "./product";
 import { ProfileRoute } from "./profile";
-import { AddEquipment } from "./add-equipment";
 
 const router = createBrowserRouter([
   {
@@ -17,10 +18,18 @@ const router = createBrowserRouter([
       { path: "", element: <HomeRoute /> },
       { path: "all-equipments", element: <AllEquipmentsRoute /> },
       {
+        path: "/product/:id",
+        element: (
+          <Protected>
+            <ProductRoute />
+          </Protected>
+        ),
+      },
+      {
         path: "/add-equipment",
         element: (
           <Protected>
-            <AddEquipment />
+            <AddEquipmentRoute />
           </Protected>
         ),
       },
