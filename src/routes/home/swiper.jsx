@@ -110,10 +110,7 @@ export const Swiper = () => {
             style={{ backgroundColor: slide.bgColor }}
             className="absolute px-2 w-full h-full flex items-center"
           >
-            <m.div
-              style={{ backgroundColor: slide.bgColor }}
-              className="container w-full flex flex-col gap-12 xl:flex-row xl:gap-4"
-            >
+            <m.div className="container w-full flex flex-col gap-12 xl:flex-row xl:gap-4">
               <m.div
                 initial={{ y: 50, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
