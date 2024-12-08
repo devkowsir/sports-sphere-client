@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { FaPlus, FaTrash } from "react-icons/fa6";
 import { SectionHeading } from "../../components/section-heading";
+import { useAuthContext } from "../../contexts/auth";
 
 export const AddEquipment = () => {
+  const { user } = useAuthContext();
+
   const [formState, setFormState] = useState({
     itemName: "",
     categoryName: "",
@@ -13,6 +16,8 @@ export const AddEquipment = () => {
     processingTime: "",
     stockStatus: 0,
     description: "",
+    userName: user.displayName,
+    userEmail: user.email,
   });
 
   const handleChange = (e) => {
@@ -65,6 +70,8 @@ export const AddEquipment = () => {
         return { name, cost };
       })
       .filter((c) => c !== null);
+    const userName = e.target["userName"].value;
+    const userEmail = e.target["userEmail"].value;
 
     console.log({
       itemName,
@@ -76,6 +83,8 @@ export const AddEquipment = () => {
       stockStatus,
       customizations,
       description,
+      userName,
+      userEmail,
     });
   };
 
@@ -218,6 +227,26 @@ export const AddEquipment = () => {
               onChange={handleChange}
               value={formState.description}
               required
+            />
+          </label>
+          <label className="form-control">
+            <span className="label text-sm text-slate-500 font-medium">User Name</span>
+            <input
+              type="text"
+              name="userName"
+              className="input input-sm text-slate-700 read-only:bg-base-200 read-only:cursor-not-allowed"
+              defaultValue={formState.userName}
+              readOnly
+            />
+          </label>
+          <label className="form-control">
+            <span className="label text-sm text-slate-500 font-medium">User Email</span>
+            <input
+              type="email"
+              name="userEmail"
+              className="input input-sm text-slate-700 read-only:bg-base-200 read-only:cursor-not-allowed"
+              defaultValue={formState.userEmail}
+              readOnly
             />
           </label>
           <button className="btn btn-neutral">Add Equipment</button>
