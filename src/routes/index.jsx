@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { Protected } from "../components/protected";
 import { AuthLayout } from "../layouts/auth";
 import { HomeLayout } from "../layouts/home";
+import { AllEquipmentsRoute } from "./all-equipments";
 import { LoginRoute } from "./auth/login";
 import { RegisterRoute } from "./auth/register";
 import { HomeRoute } from "./home";
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
     element: <HomeLayout />,
     children: [
       { path: "", element: <HomeRoute /> },
+      { path: "all-equipments", element: <AllEquipmentsRoute /> },
       {
         path: "profile",
         element: (
