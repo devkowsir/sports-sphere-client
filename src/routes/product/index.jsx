@@ -24,7 +24,7 @@ export const ProductRoute = () => {
       <div className="container md:max-w-screen-md">
         <SectionHeading heading={"Product Details"} />
         <div className="card card-bordered mx-auto w-96 rounded-2xl shadow-xl sm:w-full sm:card-side">
-          <figure className="relative w-1/2 shadow-sm h-full">
+          <figure className="relative shadow-sm h-full sm:shrink-0 sm:w-1/2">
             <img src={product.image} alt="" />
             <div className="absolute bottom-4 w-full h-max px-8 flex justify-between items-center text-slate-700 sm:bottom-8">
               <div className="flex gap-1 items-center">

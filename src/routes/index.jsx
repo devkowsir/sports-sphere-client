@@ -7,6 +7,7 @@ import { AllEquipmentsRoute } from "./all-equipments";
 import { LoginRoute } from "./auth/login";
 import { RegisterRoute } from "./auth/register";
 import { HomeRoute } from "./home";
+import { MyEquipmentsRoute } from "./my-equipments";
 import { ProductRoute } from "./product";
 import { ProfileRoute } from "./profile";
 
@@ -30,6 +31,14 @@ const router = createBrowserRouter([
         element: (
           <Protected>
             <AddEquipmentRoute />
+          </Protected>
+        ),
+      },
+      {
+        path: "/my-equipments",
+        element: (
+          <Protected>
+            <MyEquipmentsRoute />
           </Protected>
         ),
       },
