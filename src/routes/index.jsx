@@ -7,6 +7,7 @@ import { LoginRoute } from "./auth/login";
 import { RegisterRoute } from "./auth/register";
 import { HomeRoute } from "./home";
 import { ProfileRoute } from "./profile";
+import { AddEquipment } from "./add-equipment";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,14 @@ const router = createBrowserRouter([
     children: [
       { path: "", element: <HomeRoute /> },
       { path: "all-equipments", element: <AllEquipmentsRoute /> },
+      {
+        path: "/add-equipment",
+        element: (
+          <Protected>
+            <AddEquipment />
+          </Protected>
+        ),
+      },
       {
         path: "profile",
         element: (
