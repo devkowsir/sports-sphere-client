@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useMemo, useState } from "react";
 import { SectionHeading } from "../../components/section-heading";
 import { Link } from "react-router-dom";
+import { FaSortAmountUp, FaSortAmountDown } from "react-icons/fa";
 
 const products = [
   {
@@ -90,10 +91,34 @@ const products = [
 ];
 
 export const AllEquipmentsRoute = () => {
+  const [sortMode, setSortMode] = useState(null);
+
+  const sortedProducts = useMemo(() => {
+    if (!sortMode) return products;
+
+    return [...products].sort((a, b) => (a.price == b.price ? 0 : a.price > b.price ? sortMode : -sortMode));
+  }, [sortMode, products]);
+
   return (
     <section className="my-24">
       <div className="container">
-        <SectionHeading heading={"Equipments List"} subHeading={"A breif table of all equipments from all vendors."} />
+        <div className="flex justify-between items-center">
+          <SectionHeading
+            heading={"Equipments List"}
+            subHeading={"A breif table of all equipments from all vendors."}
+          />
+          <div className="join border">
+            <button onClick={() => setSortMode((curr) => (curr == 1 ? null : 1))} className="btn btn-square join-item">
+              <FaSortAmountUp />
+            </button>
+            <button
+              onClick={() => setSortMode((curr) => (curr == -1 ? null : -1))}
+              className="btn btn-square join-item"
+            >
+              <FaSortAmountDown />
+            </button>
+          </div>
+        </div>
         <div className="my-8 border overflow-x-auto">
           <table className="table">
             <thead>
@@ -106,7 +131,7 @@ export const AllEquipmentsRoute = () => {
               </tr>
             </thead>
             <tbody className="text-slate-700">
-              {products.map(({ _id, image, itemName, categoryName, price }) => (
+              {sortedProducts.map(({ _id, image, itemName, categoryName, price }) => (
                 <tr key={_id}>
                   <td className="w-20 aspect-[5/4] grow-0 shrink-0">
                     <img src={image} alt="" className="w-full h-full object-cover" />
