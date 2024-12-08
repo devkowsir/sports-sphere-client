@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { SiteName } from "../../config";
 import { useAuthContext } from "../../contexts/auth";
 import { isValidEmail, isValidPassword } from "../../utils/input-validator";
+import { saveUserToDB } from "../../lib/utils";
 
 export const LoginRoute = () => {
   const navigate = useNavigate();
@@ -45,7 +46,10 @@ export const LoginRoute = () => {
 
   const handleGoogleLogin = async () => {
     try {
-      await loginWithGoogle();
+      const {
+        user: { displayName, email, photoURL },
+      } = await loginWithGoogle();
+      await saveUserToDB({ displayName, email, photoURL });
 
       const searchParams = new URLSearchParams(location.search);
       let redirectTo = new URL(searchParams.get("redirectTo") ?? "/", window.location.origin).pathname;
