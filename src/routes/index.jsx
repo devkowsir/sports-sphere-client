@@ -9,6 +9,7 @@ import { RegisterRoute } from "./auth/register";
 import { EditEquipmentRoute } from "./edit-equipment";
 import { HomeRoute } from "./home";
 import { MyEquipmentsRoute } from "./my-equipments";
+import { NotFound } from "./not-found";
 import { ProductRoute } from "./product";
 import { ProfileRoute } from "./profile";
 
@@ -59,7 +60,7 @@ const router = createBrowserRouter([
           </Protected>
         ),
       },
-      { path: "*", element: <div>Not Found</div> },
+      { path: "*", element: <NotFound /> },
     ],
   },
   {
