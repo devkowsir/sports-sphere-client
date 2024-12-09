@@ -1,7 +1,7 @@
 import React from "react";
 import { SectionHeading } from "../../components/section-heading";
 
-export const HotProduct = () => {
+export const Hot = () => {
   return (
     <section className="mb-24">
       <div className="container flex flex-col items-center justify-between gap-8 lg:gap-4 lg:flex-row">

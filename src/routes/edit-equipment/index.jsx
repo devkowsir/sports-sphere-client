@@ -242,7 +242,7 @@ export const EditEquipmentRoute = () => {
             <button className="btn btn-outline" onClick={() => navigate("/my-equipments")}>
               Cancel
             </button>
-            <button className="btn btn-neutral">Update Equipment</button>
+            <button className="btn btn-success">Update Equipment</button>
           </form>
         ) : (
           <Loading />

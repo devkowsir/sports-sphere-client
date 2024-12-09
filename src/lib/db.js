@@ -16,6 +16,7 @@ export const getEquipment = async (id) => {
 
 export const getEquipments = async (opts = {}) => {
   const searchParams = new URLSearchParams(opts);
+  console.log(opts);
   const res = await fetch(`${BackendUrl}/api/equipments?${searchParams.toString()}`);
   return res.json();
 };

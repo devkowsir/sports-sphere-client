@@ -15,7 +15,7 @@ export const EquipmentRoute = () => {
   return (
     <section className="my-12">
       <div className="container md:max-w-screen-md">
-        <SectionHeading heading={"Product Details"} />
+        <SectionHeading heading={"Equipment Details"} />
         {product ? (
           <div className="card card-bordered mx-auto w-96 rounded-2xl shadow-xl sm:w-full sm:card-side">
             <figure className="relative shadow-sm h-full sm:shrink-0 sm:w-1/2">
@@ -43,7 +43,7 @@ export const EquipmentRoute = () => {
                 </div>
               </div>
               {product.customizations?.length ? (
-                <table className="table table-xs md:table-sm border">
+                <table className="mt-4 table table-xs md:table-sm border">
                   <thead>
                     <tr>
                       <th>Customization</th>
@@ -59,7 +59,9 @@ export const EquipmentRoute = () => {
                     ))}
                   </tbody>
                 </table>
-              ) : null}
+              ) : (
+                <div className="mt-4 text-sm text-slate-500">No Customizations Offered.</div>
+              )}
               <div className="mt-4 flex items-center justify-between text-sm text-slate-500">
                 <FaUser />
                 <p className="ml-1">{product.userName}</p>

@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { Loading } from "../../components/loading";
 import { Rating } from "../../components/rating";
 import { SectionHeading } from "../../components/section-heading";
 import { getEquipments } from "../../lib/db";
 
 const CARD_WIDTH = 320;
 
-export const PopularProducts = () => {
+export const Popular = () => {
   const [viewStartIndex, setViewStartIndex] = useState(0);
   const [equipments, setEquipments] = useState(null);
 
@@ -20,7 +21,7 @@ export const PopularProducts = () => {
       <div className="container">
         <div className="flex justify-between">
           <SectionHeading
-            heading={"Most Popular Products"}
+            heading={"Most Popular Equipments"}
             subHeading={"Browse through our collection of must-haves"}
           />
           {equipments ? (
@@ -44,8 +45,10 @@ export const PopularProducts = () => {
             <div className="loading loading-lg"></div>
           )}
         </div>
-        <div className="overflow-hidden">
-          {equipments ? (
+        {equipments == null ? <Loading /> : null}
+        {equipments?.length == 0 ? null : <div className="text-center text-slate-700">No Equipments Found!</div>}
+        {equipments?.length > 0 ? (
+          <div className="overflow-hidden">
             <ul
               className="mt-4 flex transition"
               style={{
@@ -71,10 +74,8 @@ export const PopularProducts = () => {
                 </li>
               ))}
             </ul>
-          ) : (
-            <div className="loading loading-lg"></div>
-          )}
-        </div>
+          </div>
+        ) : null}
       </div>
     </section>
   );
