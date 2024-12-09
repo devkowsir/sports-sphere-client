@@ -18,7 +18,7 @@ export const Hot = () => {
           />
           <div className="mt-4 flex gap-4">
             {[1, 2, 3].map((id) => (
-              <img src={`/images/product-hot-${id}.jpg`} key={id} />
+              <img src={`/images/equipment-hot-${id}.jpg`} key={id} />
             ))}
           </div>
         </div>

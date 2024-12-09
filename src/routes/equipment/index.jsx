@@ -5,44 +5,44 @@ import { SectionHeading } from "../../components/section-heading";
 import { getEquipment } from "../../lib/db";
 
 export const EquipmentRoute = () => {
-  const [product, setProduct] = useState(null);
+  const [equipment, setEquipment] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
-    getEquipment(id).then((data) => setProduct(data));
+    getEquipment(id).then((data) => setEquipment(data));
   }, []);
 
   return (
     <section className="my-12">
       <div className="container md:max-w-screen-md">
         <SectionHeading heading={"Equipment Details"} />
-        {product ? (
+        {equipment ? (
           <div className="card card-bordered mx-auto w-96 rounded-2xl shadow-xl sm:w-full sm:card-side">
             <figure className="relative shadow-sm h-full sm:shrink-0 sm:w-1/2">
-              <img src={product.image} alt="" />
+              <img src={equipment.image} alt="" />
               <div className="absolute bottom-4 w-full h-max px-8 flex justify-between items-center text-slate-700 sm:bottom-8">
                 <div className="flex gap-1 items-center">
                   <FaStar className="text-orange-500" />
-                  <span>{product.rating}</span>
+                  <span>{equipment.rating}</span>
                 </div>
-                <div className="font-semibold">${product.price}</div>
+                <div className="font-semibold">${equipment.price}</div>
               </div>
             </figure>
             <div className="card-body">
               <div className="flex items-center text-slate-700">
-                <h3 className="text-xl md:text-2xl font-display font-bold">{product.itemName}</h3>
-                <div className="badge badge-secondary ml-1">{product.categoryName}</div>
+                <h3 className="text-xl md:text-2xl font-display font-bold">{equipment.itemName}</h3>
+                <div className="badge badge-secondary ml-1">{equipment.categoryName}</div>
               </div>
-              <p className="text-sm md:text-base text-slate-500">{product.description}</p>
+              <p className="text-sm md:text-base text-slate-500">{equipment.description}</p>
               <div className="flex justify-between items-center text-sm md:text-base text-slate-700">
                 <div>
-                  {product.processingTime} <span className="text-slate-500">to process</span>
+                  {equipment.processingTime} <span className="text-slate-500">to process</span>
                 </div>
                 <div>
-                  {product.stockStatus} <span className="text-slate-500">in stock</span>
+                  {equipment.stockStatus} <span className="text-slate-500">in stock</span>
                 </div>
               </div>
-              {product.customizations?.length ? (
+              {equipment.customizations?.length ? (
                 <table className="mt-4 table table-xs md:table-sm border">
                   <thead>
                     <tr>
@@ -51,7 +51,7 @@ export const EquipmentRoute = () => {
                     </tr>
                   </thead>
                   <tbody className="text-slate-500 text-xs md:text-sm">
-                    {(product.customizations ?? []).map(({ cost, name }, i) => (
+                    {(equipment.customizations ?? []).map(({ cost, name }, i) => (
                       <tr key={i}>
                         <td>{name}</td>
                         <td>${cost}</td>
@@ -64,8 +64,8 @@ export const EquipmentRoute = () => {
               )}
               <div className="mt-4 flex items-center justify-between text-sm text-slate-500">
                 <FaUser />
-                <p className="ml-1">{product.userName}</p>
-                <div>{product.userEmail}</div>
+                <p className="ml-1">{equipment.userName}</p>
+                <div>{equipment.userEmail}</div>
               </div>
             </div>
           </div>

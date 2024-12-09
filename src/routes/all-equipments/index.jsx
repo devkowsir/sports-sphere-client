@@ -61,7 +61,7 @@ export const AllEquipmentsRoute = () => {
                     <td>{categoryName}</td>
                     <td>${price}</td>
                     <th>
-                      <Link to={`/product/${_id}`} className="btn btn-ghost">
+                      <Link to={`/equipment/${_id}`} className="btn btn-ghost">
                         View Details
                       </Link>
                     </th>
