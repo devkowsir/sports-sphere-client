@@ -64,6 +64,7 @@ export const EditEquipmentRoute = () => {
 
     try {
       await editEquipment(id, updatedEquipment);
+      navigate(-1);
       toast("Equipment saved to db", { type: "success" });
     } catch (e) {
       toast("Error saving equipment", { type: "error" });
