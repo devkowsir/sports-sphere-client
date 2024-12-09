@@ -115,6 +115,7 @@ export const EditEquipmentRoute = () => {
                 type="number"
                 name="price"
                 min={0}
+                step={0.01}
                 className="input input-sm text-slate-700"
                 onChange={handleChange}
                 value={formState.price}
@@ -126,6 +127,7 @@ export const EditEquipmentRoute = () => {
               <input
                 type="number"
                 name="rating"
+                step={0.1}
                 min={0}
                 max={5}
                 className="input input-sm text-slate-700"
@@ -151,6 +153,7 @@ export const EditEquipmentRoute = () => {
                 type="number"
                 name="stockStatus"
                 min={0}
+                step={1}
                 className="input input-sm text-slate-700"
                 onChange={handleChange}
                 value={formState.stockStatus}
@@ -183,6 +186,7 @@ export const EditEquipmentRoute = () => {
                         type="number"
                         name="cost"
                         min={0}
+                        step={0.01}
                         data-index={i}
                         className="input input-sm w-24 sm:w-1/6"
                         value={cost}
