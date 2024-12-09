@@ -5,22 +5,21 @@ import { useAuthContext } from "../../contexts/auth";
 import { BackendUrl } from "../../config";
 import { toast } from "react-toastify";
 
+const defaultState = {
+  itemName: "",
+  categoryName: "",
+  image: "",
+  price: 100.5,
+  rating: 4.8,
+  customizations: [{ name: "", cost: 0 }],
+  processingTime: "",
+  stockStatus: 0,
+  description: "",
+};
+
 export const AddEquipmentRoute = () => {
   const { user } = useAuthContext();
-
-  const [formState, setFormState] = useState({
-    itemName: "",
-    categoryName: "",
-    image: "",
-    price: 0,
-    rating: 0,
-    customizations: [{ name: "", cost: 0 }],
-    processingTime: "",
-    stockStatus: 0,
-    description: "",
-    userName: user.displayName,
-    userEmail: user.email,
-  });
+  const [formState, setFormState] = useState({ ...defaultState, userName: user.displayName, userEmail: user.email });
 
   const handleChange = (e) => {
     setFormState((state) => ({ ...state, [e.target.name]: e.target.value }));
@@ -54,45 +53,27 @@ export const AddEquipmentRoute = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const itemName = e.target["itemName"].value;
-    const categoryName = e.target["categoryName"].value;
-    const image = e.target["image"].value;
-    const price = parseInt(e.target["price"].value);
-    const rating = parseInt(e.target["rating"].value);
-    const processingTime = e.target["processingTime"].value;
-    const stockStatus = parseInt(e.target["stockStatus"].value);
-    const description = e.target["description"].value;
-    const customizations = [...e.target.querySelectorAll("[data-name=customization]")]
-      .map((customizationContainer) => {
-        const name = customizationContainer.querySelector("input[name=name]").value.trim();
-        const cost = parseInt(customizationContainer.querySelector("input[name=cost]").value);
-        if (name.length == 0) return null;
-        return { name, cost };
-      })
-      .filter((c) => c !== null);
-    const userName = e.target["userName"].value;
-    const userEmail = e.target["userEmail"].value;
+    const newEquipment = {
+      ...formState,
+      customizations: [...e.target.querySelectorAll("[data-name=customization]")]
+        .map((customizationContainer) => {
+          const name = customizationContainer.querySelector("input[name=name]").value.trim();
+          const cost = parseInt(customizationContainer.querySelector("input[name=cost]").value);
+          if (name.length == 0) return null;
+          return { name, cost };
+        })
+        .filter((c) => c !== null),
+    };
 
     try {
       const res = await fetch(`${BackendUrl}/api/equipment`, {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          itemName,
-          categoryName,
-          image,
-          price,
-          rating,
-          processingTime,
-          stockStatus,
-          description,
-          customizations,
-          userName,
-          userEmail,
-        }),
+        body: JSON.stringify(newEquipment),
       });
       const data = await res.json();
       console.log(data);
+      setFormState({ ...defaultState, userName: user.displayName, userEmail: user.email });
       toast("Equipment saved to db", { type: "success" });
     } catch (e) {
       toast("Error saving equipment", { type: "error" });
@@ -143,6 +124,7 @@ export const AddEquipmentRoute = () => {
               type="number"
               name="price"
               min={0}
+              step={0.01}
               className="input input-sm text-slate-700"
               onChange={handleChange}
               value={formState.price}
@@ -155,6 +137,7 @@ export const AddEquipmentRoute = () => {
               type="number"
               name="rating"
               min={0}
+              step={0.1}
               max={5}
               className="input input-sm text-slate-700"
               onChange={handleChange}
@@ -179,6 +162,7 @@ export const AddEquipmentRoute = () => {
               type="number"
               name="stockStatus"
               min={0}
+              step={1}
               className="input input-sm text-slate-700"
               onChange={handleChange}
               value={formState.stockStatus}
@@ -210,6 +194,7 @@ export const AddEquipmentRoute = () => {
                   type="number"
                   name="cost"
                   min={0}
+                  step={0.01}
                   data-index={i}
                   className="input input-sm w-24 sm:w-1/6"
                   value={cost}
