@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { FaSortAmountDown, FaSortAmountUp } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { Loading } from "../../components/loading";
 import { SectionHeading } from "../../components/section-heading";
 import { BackendUrl } from "../../config";
 
@@ -72,7 +73,7 @@ export const AllEquipmentsRoute = () => {
               </tbody>
             </table>
           ) : (
-            <div className="loading loading-lg"></div>
+            <Loading />
           )}
         </div>
       </div>

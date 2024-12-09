@@ -261,7 +261,7 @@ export const EditEquipmentRoute = () => {
             <button className="btn btn-neutral">Update Equipment</button>
           </form>
         ) : (
-          <div className="loading loading-lg" />
+          <Loading />
         )}
       </div>
     </section>
