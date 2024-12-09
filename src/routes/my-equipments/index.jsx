@@ -1,36 +1,22 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaEdit, FaSortAmountDown, FaSortAmountUp, FaStar, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { SectionHeading } from "../../components/section-heading";
-import { BackendUrl } from "../../config";
-import { useAuthContext } from "../../contexts/auth";
 import { toast } from "react-toastify";
+import { SectionHeading } from "../../components/section-heading";
+import { useAuthContext } from "../../contexts/auth";
+import { deleteEquipment, getEquipments } from "../../lib/db";
 
 export const MyEquipmentsRoute = () => {
-  const [sortMode, setSortMode] = useState(null);
-  const [products, setProducts] = useState(null);
+  const [equipments, setEquipments] = useState(null);
   const { user } = useAuthContext();
 
-  const sortedProducts = useMemo(() => {
-    if (!products) return null;
-    if (!sortMode) return products;
-
-    return [...products].sort((a, b) => (a.price == b.price ? 0 : a.price > b.price ? sortMode : -sortMode));
-  }, [sortMode, products]);
-
   useEffect(() => {
-    fetch(`${BackendUrl}/api/equipments/${user.email}`)
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
+    getEquipments({ email: user.email }).then((products) => setEquipments(products));
   }, []);
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`${BackendUrl}/api/equipment/${id}`, {
-        method: "DELETE",
-      });
-      const data = await res.json();
-      console.log(data);
+      await deleteEquipment(id);
       toast("Equipment deleted", { type: "success" });
     } catch (e) {
       console.error(e);
@@ -38,7 +24,11 @@ export const MyEquipmentsRoute = () => {
     }
   };
 
-  console.log(sortedProducts);
+  const handleSort = (sort) => {
+    setEquipments(null);
+
+    getEquipments({ sort, email: user.email }).then((products) => setEquipments(products));
+  };
 
   return (
     <section className="my-24">
@@ -49,20 +39,17 @@ export const MyEquipmentsRoute = () => {
             subHeading={"A breif table of all equipments from all vendors."}
           />
           <div className="join border">
-            <button onClick={() => setSortMode((curr) => (curr == 1 ? null : 1))} className="btn btn-square join-item">
+            <button onClick={() => handleSort(1)} className="btn btn-square join-item">
               <FaSortAmountUp />
             </button>
-            <button
-              onClick={() => setSortMode((curr) => (curr == -1 ? null : -1))}
-              className="btn btn-square join-item"
-            >
+            <button onClick={() => handleSort(-1)} className="btn btn-square join-item">
               <FaSortAmountDown />
             </button>
           </div>
         </div>
         <div className="my-8 grid gap-x-4 gap-y-8 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
-          {sortedProducts?.length ? (
-            sortedProducts.map(
+          {equipments?.length ? (
+            equipments.map(
               ({
                 _id,
                 image,

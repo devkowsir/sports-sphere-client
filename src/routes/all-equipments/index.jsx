@@ -1,26 +1,22 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaSortAmountDown, FaSortAmountUp } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Loading } from "../../components/loading";
 import { SectionHeading } from "../../components/section-heading";
-import { BackendUrl } from "../../config";
+import { getEquipments } from "../../lib/db";
 
 export const AllEquipmentsRoute = () => {
-  const [sortMode, setSortMode] = useState(null);
-  const [products, setProducts] = useState(null);
-
-  const sortedProducts = useMemo(() => {
-    if (!products) return null;
-    if (!sortMode) return products;
-
-    return [...products].sort((a, b) => (a.price == b.price ? 0 : a.price > b.price ? sortMode : -sortMode));
-  }, [sortMode, products]);
+  const [equipments, setEquipments] = useState(null);
 
   useEffect(() => {
-    fetch(`${BackendUrl}/api/equipments`)
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
+    getEquipments().then((products) => setEquipments(products));
   }, []);
+
+  const handleSort = (sort) => {
+    setEquipments(null);
+
+    getEquipments({ sort }).then((products) => setEquipments(products));
+  };
 
   return (
     <section className="my-24">
@@ -31,19 +27,16 @@ export const AllEquipmentsRoute = () => {
             subHeading={"A breif table of all equipments from all vendors."}
           />
           <div className="join border">
-            <button onClick={() => setSortMode((curr) => (curr == 1 ? null : 1))} className="btn btn-square join-item">
+            <button onClick={() => handleSort(1)} className="btn btn-square join-item">
               <FaSortAmountUp />
             </button>
-            <button
-              onClick={() => setSortMode((curr) => (curr == -1 ? null : -1))}
-              className="btn btn-square join-item"
-            >
+            <button onClick={() => handleSort(-1)} className="btn btn-square join-item">
               <FaSortAmountDown />
             </button>
           </div>
         </div>
         <div className="my-8 overflow-x-auto">
-          {sortedProducts ? (
+          {equipments ? (
             <table className="table border">
               <thead>
                 <tr>
@@ -55,7 +48,7 @@ export const AllEquipmentsRoute = () => {
                 </tr>
               </thead>
               <tbody className="text-slate-700">
-                {sortedProducts.map(({ _id, image, itemName, categoryName, price }) => (
+                {equipments.map(({ _id, image, itemName, categoryName, price }) => (
                   <tr key={_id}>
                     <td className="w-20 aspect-[5/4] grow-0 shrink-0">
                       <img src={image} alt="" className="w-full h-full object-cover" />

@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { Loading } from "../../components/loading";
 import { SectionHeading } from "../../components/section-heading";
 import { BackendUrl } from "../../config";
+import { editEquipment, getEquipment } from "../../lib/db";
 
 export const EditEquipmentRoute = () => {
   const [formState, setFormState] = useState(null);
@@ -12,9 +13,7 @@ export const EditEquipmentRoute = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`${BackendUrl}/api/equipment/${id}`)
-      .then((res) => res.json())
-      .then((data) => setFormState(data));
+    getEquipment(id).then((data) => setFormState(data));
   }, []);
 
   const handleChange = (e) => {
@@ -51,45 +50,20 @@ export const EditEquipmentRoute = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const itemName = e.target["itemName"].value;
-    const categoryName = e.target["categoryName"].value;
-    const image = e.target["image"].value;
-    const price = parseInt(e.target["price"].value);
-    const rating = parseInt(e.target["rating"].value);
-    const processingTime = e.target["processingTime"].value;
-    const stockStatus = parseInt(e.target["stockStatus"].value);
-    const description = e.target["description"].value;
-    const customizations = [...e.target.querySelectorAll("[data-name=customization]")]
-      .map((customizationContainer) => {
-        const name = customizationContainer.querySelector("input[name=name]").value.trim();
-        const cost = parseInt(customizationContainer.querySelector("input[name=cost]").value);
-        if (name.length == 0) return null;
-        return { name, cost };
-      })
-      .filter((c) => c !== null);
-    const userName = e.target["userName"].value;
-    const userEmail = e.target["userEmail"].value;
+    const updatedEquipment = {
+      ...formState,
+      customizations: [...e.target.querySelectorAll("[data-name=customization]")]
+        .map((customizationContainer) => {
+          const name = customizationContainer.querySelector("input[name=name]").value.trim();
+          const cost = parseInt(customizationContainer.querySelector("input[name=cost]").value);
+          if (name.length == 0) return null;
+          return { name, cost };
+        })
+        .filter((c) => c !== null),
+    };
 
     try {
-      const res = await fetch(`${BackendUrl}/api/equipment/${id}`, {
-        method: "PUT",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({
-          itemName,
-          categoryName,
-          image,
-          price,
-          rating,
-          processingTime,
-          stockStatus,
-          description,
-          customizations,
-          userName,
-          userEmail,
-        }),
-      });
-      const data = await res.json();
-      console.log(data);
+      await editEquipment(id, updatedEquipment);
       toast("Equipment saved to db", { type: "success" });
     } catch (e) {
       toast("Error saving equipment", { type: "error" });

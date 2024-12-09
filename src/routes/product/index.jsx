@@ -2,16 +2,14 @@ import React, { useEffect, useState } from "react";
 import { FaStar, FaUser } from "react-icons/fa6";
 import { useParams } from "react-router-dom";
 import { SectionHeading } from "../../components/section-heading";
-import { BackendUrl } from "../../config";
+import { getEquipment } from "../../lib/db";
 
 export const ProductRoute = () => {
   const [product, setProduct] = useState(null);
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`${BackendUrl}/api/equipment/${id}`)
-      .then((res) => res.json())
-      .then((data) => setProduct(data));
+    getEquipment(id).then((data) => setProduct(data));
   }, []);
 
   return (

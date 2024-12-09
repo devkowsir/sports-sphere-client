@@ -3,18 +3,16 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { Rating } from "../../components/rating";
 import { SectionHeading } from "../../components/section-heading";
-import { BackendUrl } from "../../config";
+import { getEquipments } from "../../lib/db";
 
 const CARD_WIDTH = 320;
 
 export const PopularProducts = () => {
   const [viewStartIndex, setViewStartIndex] = useState(0);
-  const [products, setProducts] = useState(null);
+  const [equipments, setEquipments] = useState(null);
 
   useEffect(() => {
-    fetch(`${BackendUrl}/api/equipments`)
-      .then((res) => res.json())
-      .then((data) => setProducts(data));
+    getEquipments().then((data) => setEquipments(data.slice(0, 6)));
   }, []);
 
   return (
@@ -25,7 +23,7 @@ export const PopularProducts = () => {
             heading={"Most Popular Products"}
             subHeading={"Browse through our collection of must-haves"}
           />
-          {products ? (
+          {equipments ? (
             <div className="flex gap-4">
               <button
                 className={`btn btn-circle btn-outline`}
@@ -37,7 +35,7 @@ export const PopularProducts = () => {
               <button
                 className={`btn btn-circle btn-outline`}
                 onClick={() => setViewStartIndex((curr) => curr + 1)}
-                disabled={viewStartIndex + 1 >= products.length}
+                disabled={viewStartIndex + 1 >= equipments.length}
               >
                 <FaArrowRight />
               </button>
@@ -47,15 +45,15 @@ export const PopularProducts = () => {
           )}
         </div>
         <div className="overflow-hidden">
-          {products ? (
+          {equipments ? (
             <ul
               className="mt-4 flex transition"
               style={{
-                width: CARD_WIDTH * products.length - 20,
+                width: CARD_WIDTH * equipments.length - 20,
                 transform: `translateX(-${CARD_WIDTH * viewStartIndex}px)`,
               }}
             >
-              {products.map(({ _id, itemName, image, price, rating }) => (
+              {equipments.map(({ _id, itemName, image, price, rating }) => (
                 <li key={_id} className="shrink-0 w-80 pr-5">
                   <div className="card card-compact card-bordered bg-base-100">
                     <figure>

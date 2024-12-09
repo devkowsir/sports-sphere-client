@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { FaPlus, FaTrash } from "react-icons/fa6";
+import { toast } from "react-toastify";
 import { SectionHeading } from "../../components/section-heading";
 import { useAuthContext } from "../../contexts/auth";
-import { BackendUrl } from "../../config";
-import { toast } from "react-toastify";
+import { addEquipment } from "../../lib/db";
 
 const defaultState = {
   itemName: "",
   categoryName: "",
   image: "",
-  price: 100.5,
-  rating: 4.8,
+  price: 0,
+  rating: 0,
   customizations: [{ name: "", cost: 0 }],
   processingTime: "",
   stockStatus: 0,
@@ -66,13 +66,7 @@ export const AddEquipmentRoute = () => {
     };
 
     try {
-      const res = await fetch(`${BackendUrl}/api/equipment`, {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(newEquipment),
-      });
-      const data = await res.json();
-      console.log(data);
+      await addEquipment(newEquipment);
       setFormState({ ...defaultState, userName: user.displayName, userEmail: user.email });
       toast("Equipment saved to db", { type: "success" });
     } catch (e) {
