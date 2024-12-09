@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { FaPlus, FaTrash } from "react-icons/fa6";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Loading } from "../../components/loading";
 import { SectionHeading } from "../../components/section-heading";
 import { BackendUrl } from "../../config";
 
 export const EditEquipmentRoute = () => {
   const [formState, setFormState] = useState(null);
+  const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
@@ -258,6 +260,9 @@ export const EditEquipmentRoute = () => {
                 readOnly
               />
             </label>
+            <button className="btn btn-outline" onClick={() => navigate(-1)}>
+              Cancel
+            </button>
             <button className="btn btn-neutral">Update Equipment</button>
           </form>
         ) : (
