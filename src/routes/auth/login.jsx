@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { SiteName } from "../../config";
 import { useAuthContext } from "../../contexts/auth";
 import { isValidEmail, isValidPassword } from "../../utils/input-validator";
-import { saveUserToDB } from "../../lib/utils";
+import { saveUserToDB } from "../../lib/db";
 
 export const LoginRoute = () => {
   const navigate = useNavigate();

@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { SiteName } from "../../config";
 import { useAuthContext } from "../../contexts/auth";
-import { saveUserToDB } from "../../lib/utils";
+import { saveUserToDB } from "../../lib/db";
 import { isValidEmail, isValidName, isValidPassword, isValidPhotoURL } from "../../utils/input-validator";
 
 export const RegisterRoute = () => {
