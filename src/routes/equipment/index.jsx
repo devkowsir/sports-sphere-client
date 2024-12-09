@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { SectionHeading } from "../../components/section-heading";
 import { getEquipment } from "../../lib/db";
 
-export const ProductRoute = () => {
+export const EquipmentRoute = () => {
   const [product, setProduct] = useState(null);
   const { id } = useParams();
 
@@ -47,20 +47,20 @@ export const ProductRoute = () => {
                   <thead>
                     <tr>
                       <th>Customization</th>
-                      <th>Cost</th>
+                      <th className="w-12">Cost</th>
                     </tr>
                   </thead>
                   <tbody className="text-slate-500 text-xs md:text-sm">
                     {(product.customizations ?? []).map(({ cost, name }, i) => (
                       <tr key={i}>
                         <td>{name}</td>
-                        <td>{cost}</td>
+                        <td>${cost}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
               ) : null}
-              <div className="flex items-center justify-between text-sm md:text-base text-slate-500">
+              <div className="mt-4 flex items-center justify-between text-sm text-slate-500">
                 <FaUser />
                 <p className="ml-1">{product.userName}</p>
                 <div>{product.userEmail}</div>

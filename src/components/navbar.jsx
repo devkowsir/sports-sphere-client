@@ -8,7 +8,7 @@ export const Navbar = () => {
   const { user, logout } = useAuthContext();
 
   return (
-    <div className="sticky top-0 z-10 shadow-md backdrop-blur-md">
+    <div className="sticky top-0 z-10 shadow-md bg-base-100/50 backdrop-blur-md">
       <nav className="navbar container">
         <div className="navbar-start">
           <Logo />

@@ -36,7 +36,11 @@ export const AllEquipmentsRoute = () => {
           </div>
         </div>
         <div className="my-8 overflow-x-auto">
-          {equipments ? (
+          {equipments ? null : <Loading />}
+          {equipments?.length == 0 ? (
+            <div className="mt-8 text-center text-slate-700">No equipments available!</div>
+          ) : null}
+          {equipments?.length ? (
             <table className="table border">
               <thead>
                 <tr>
@@ -65,9 +69,7 @@ export const AllEquipmentsRoute = () => {
                 ))}
               </tbody>
             </table>
-          ) : (
-            <Loading />
-          )}
+          ) : null}
         </div>
       </div>
     </section>

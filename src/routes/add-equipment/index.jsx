@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaPlus, FaTrash } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { SectionHeading } from "../../components/section-heading";
 import { useAuthContext } from "../../contexts/auth";
@@ -18,6 +19,7 @@ const defaultState = {
 };
 
 export const AddEquipmentRoute = () => {
+  const navigate = useNavigate();
   const { user } = useAuthContext();
   const [formState, setFormState] = useState({ ...defaultState, userName: user.displayName, userEmail: user.email });
 
@@ -68,6 +70,7 @@ export const AddEquipmentRoute = () => {
     try {
       await addEquipment(newEquipment);
       setFormState({ ...defaultState, userName: user.displayName, userEmail: user.email });
+      navigate("/my-equipments");
       toast("Equipment saved to db", { type: "success" });
     } catch (e) {
       toast("Error saving equipment", { type: "error" });

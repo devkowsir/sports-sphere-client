@@ -7,10 +7,10 @@ import { AllEquipmentsRoute } from "./all-equipments";
 import { LoginRoute } from "./auth/login";
 import { RegisterRoute } from "./auth/register";
 import { EditEquipmentRoute } from "./edit-equipment";
+import { EquipmentRoute } from "./equipment";
 import { HomeRoute } from "./home";
 import { MyEquipmentsRoute } from "./my-equipments";
 import { NotFound } from "./not-found";
-import { ProductRoute } from "./product";
 import { ProfileRoute } from "./profile";
 
 const router = createBrowserRouter([
@@ -21,10 +21,10 @@ const router = createBrowserRouter([
       { path: "", element: <HomeRoute /> },
       { path: "all-equipments", element: <AllEquipmentsRoute /> },
       {
-        path: "/product/:id",
+        path: "/equipment/:id",
         element: (
           <Protected>
-            <ProductRoute />
+            <EquipmentRoute />
           </Protected>
         ),
       },

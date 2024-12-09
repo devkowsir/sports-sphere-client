@@ -63,7 +63,7 @@ export const PopularProducts = () => {
                       <h3 className="text-base font-display font-bold tracking-wide">{itemName}</h3>
                       <Rating className={"justify-center"} maxRating={5} achievedRating={rating} />
                       <span className="font-bold">${price}</span>
-                      <Link to={`/product/${_id}`} className="btn btn-wide">
+                      <Link to={`/equipment/${_id}`} className="btn btn-wide">
                         View Details
                       </Link>
                     </div>
