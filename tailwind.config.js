@@ -1,3 +1,6 @@
+import daisyui from "daisyui";
+import twAnimate from "tailwindcss-animate";
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["index.html", "src/**/*.{js,jsx}"],
@@ -12,7 +15,7 @@ export default {
       body: "Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji",
     },
   },
-  plugins: [require("daisyui"), require("tailwindcss-animate")],
+  plugins: [daisyui, twAnimate],
   daisyui: {
     themes: ["cmyk"],
   },
