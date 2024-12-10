@@ -1,5 +1,5 @@
 import React from "react";
-import { FaBars } from "react-icons/fa6";
+import { FaBars, FaMoon, FaRegSun } from "react-icons/fa6";
 import { Link, NavLink } from "react-router-dom";
 import { useAuthContext } from "../contexts/auth";
 import { Logo } from "./logo";
@@ -31,7 +31,7 @@ export const Navbar = () => {
         </div>
         <div className="navbar-end flex gap-4">
           <div className="dropdown dropdown-end lg:hidden">
-            <div tabIndex={0} role="button" className="btn m-1">
+            <div tabIndex={0} role="button" className="btn btn-sm sm:btn-md">
               <FaBars className="text-xl" />
             </div>
             <ul className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
@@ -74,7 +74,7 @@ export const Navbar = () => {
             </>
           ) : (
             <>
-              <Link to={"/auth/register"} className="btn btn-secondary">
+              <Link to={"/auth/register"} className="btn btn-secondary hidden sm:flex">
                 Register
               </Link>
               <Link to={"/auth/login"} className="btn btn-primary">

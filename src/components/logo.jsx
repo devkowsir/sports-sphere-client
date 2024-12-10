@@ -15,7 +15,7 @@ export const Logo = ({ className }) => {
           }}
         ></div>
       </div>
-      <div className="content text-xl font-black">
+      <div className="content text-xl font-black hidden sm:block">
         <span className="text-primary">Sports</span>
         <span className="text-secondary">Sphere</span>
         <p className="text-xs text-neutral/75 font-medium">Gear Up. Play Hard. Win Big.</p>

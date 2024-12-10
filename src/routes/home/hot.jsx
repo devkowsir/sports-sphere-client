@@ -16,9 +16,11 @@ export const Hot = () => {
             }
             className="[&>h2]:text-4xl"
           />
-          <div className="mt-4 flex gap-4">
+          <div className="max-w-full mt-4 flex gap-4">
             {[1, 2, 3].map((id) => (
-              <img src={`/images/equipment-hot-${id}.jpg`} key={id} />
+              <div key={id}>
+                <img src={`/images/equipment-hot-${id}.jpg`} className="w-full" />
+              </div>
             ))}
           </div>
         </div>
