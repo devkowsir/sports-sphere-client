@@ -4,7 +4,6 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Loading } from "../../components/loading";
 import { SectionHeading } from "../../components/section-heading";
-import { BackendUrl } from "../../config";
 import { editEquipment, getEquipment } from "../../lib/db";
 
 export const EditEquipmentRoute = () => {
@@ -70,6 +69,10 @@ export const EditEquipmentRoute = () => {
       toast("Error saving equipment", { type: "error" });
     }
   };
+
+  useEffect(() => {
+    document.title = `${SiteName} | Edit Equipment`;
+  }, []);
 
   return (
     <section className="my-12">

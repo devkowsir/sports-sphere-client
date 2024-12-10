@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Loading } from "../../components/loading";
 import { SectionHeading } from "../../components/section-heading";
+import { SiteName } from "../../config";
 import { useAuthContext } from "../../contexts/auth";
 import { deleteEquipment, getEquipments } from "../../lib/db";
 
@@ -15,7 +16,10 @@ export const MyEquipmentsRoute = () => {
     setEquipments(null);
     getEquipments({ email: user.email }).then((products) => setEquipments(products));
   };
-  useEffect(updateEquipments, []);
+  useEffect(() => {
+    updateEquipments();
+    document.title = `${SiteName} | My Equipments`;
+  }, []);
 
   const handleDelete = async (id) => {
     try {

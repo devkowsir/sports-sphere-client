@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { SiteName } from "../../config";
 
 export const NotFound = () => {
   const { state } = useLocation();
@@ -8,6 +10,10 @@ export const NotFound = () => {
     redirectLabel = "Back to Home";
     redirectTo = "/";
   }
+
+  useEffect(() => {
+    document.title = `${SiteName} | Not Found`;
+  }, []);
 
   return (
     <section className="my-12">

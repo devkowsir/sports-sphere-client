@@ -66,7 +66,7 @@ export const LoginRoute = () => {
   };
 
   useEffect(() => {
-    document.title = `${SiteName} | ${mode[0].toUpperCase() + mode.slice(1)}`;
+    document.title = `${SiteName} | Login`;
   }, [mode]);
 
   return (

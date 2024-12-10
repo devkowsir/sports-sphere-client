@@ -3,6 +3,7 @@ import { FaSortAmountDown, FaSortAmountUp } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Loading } from "../../components/loading";
 import { SectionHeading } from "../../components/section-heading";
+import { SiteName } from "../../config";
 import { getEquipments } from "../../lib/db";
 
 export const AllEquipmentsRoute = () => {
@@ -10,6 +11,7 @@ export const AllEquipmentsRoute = () => {
 
   useEffect(() => {
     getEquipments().then((products) => setEquipments(products));
+    document.title = `${SiteName} | All Equipments`;
   }, []);
 
   const handleSort = (sort) => {

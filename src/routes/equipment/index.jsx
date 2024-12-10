@@ -3,6 +3,7 @@ import { FaStar, FaUser } from "react-icons/fa6";
 import { useParams } from "react-router-dom";
 import { SectionHeading } from "../../components/section-heading";
 import { getEquipment } from "../../lib/db";
+import { SiteName } from "../../config";
 
 export const EquipmentRoute = () => {
   const [equipment, setEquipment] = useState(null);
@@ -10,6 +11,7 @@ export const EquipmentRoute = () => {
 
   useEffect(() => {
     getEquipment(id).then((data) => setEquipment(data));
+    document.title = `${SiteName} | Equipment Details`;
   }, []);
 
   return (
