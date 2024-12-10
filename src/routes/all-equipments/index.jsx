@@ -28,7 +28,7 @@ export const AllEquipmentsRoute = () => {
             heading={"Equipments List"}
             subHeading={"A breif table of all equipments from all vendors."}
           />
-          <div className="join border">
+          <div className="join border border-base-300">
             <button onClick={() => handleSort(1)} className="btn btn-square join-item">
               <FaSortAmountUp />
             </button>
@@ -40,10 +40,10 @@ export const AllEquipmentsRoute = () => {
         <div className="my-8 overflow-x-auto">
           {equipments ? null : <Loading />}
           {equipments?.length == 0 ? (
-            <div className="mt-8 text-center text-slate-700">No equipments available!</div>
+            <div className="mt-8 text-center text-base-content/70">No equipments available!</div>
           ) : null}
           {equipments?.length ? (
-            <table className="table border">
+            <table className="table border border-base-300">
               <thead>
                 <tr>
                   <th>Image</th>
@@ -53,7 +53,7 @@ export const AllEquipmentsRoute = () => {
                   <th></th>
                 </tr>
               </thead>
-              <tbody className="text-slate-700">
+              <tbody className="text-base-content/70">
                 {equipments.map(({ _id, image, itemName, categoryName, price }) => (
                   <tr key={_id}>
                     <td className="w-20 aspect-[5/4] grow-0 shrink-0">

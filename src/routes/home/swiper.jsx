@@ -118,9 +118,11 @@ export const Swiper = () => {
                 className="flex-1 space-y-2 xl:w-14"
               >
                 <m.img src={slide.brandImg} className="w-28" />
-                <m.h2 className="text-4xl font-display tracking-wide font-bold">{slide.productInfo}</m.h2>
+                <m.h2 className="text-4xl text-slate-700 font-display tracking-wide font-bold">
+                  {slide.productInfo}
+                </m.h2>
                 <m.p className="hidden text-gray-500 2xl:block">{slide.productDesc}</m.p>
-                <m.button className="btn group px-6 rounded-3xl flex items-center gap-2 bg-white">
+                <m.button className="btn group px-6 rounded-3xl flex items-center gap-2 bg-white border-slate-200">
                   <span className="text-sm text-slate-700">Read More</span>
                   <FaArrowRight className="icon text-secondary group-[&:hover]:translate-x-2 transition" />
                 </m.button>
@@ -149,8 +151,10 @@ export const Swiper = () => {
                 transition={{ type: "ease-out", delay: 0.3 }}
                 className="flex-1 self-end space-y-2 text-right xl:w-1/4"
               >
-                <m.h3 className="text-xl font-display tracking-wide font-bold">{slide.buyFullKitText}</m.h3>
-                <m.button className="w-full flex items-center justify-end gap-2 group">
+                <m.h3 className="text-xl font-display tracking-wide font-bold text-slate-700">
+                  {slide.buyFullKitText}
+                </m.h3>
+                <m.button className="ml-auto w-max flex items-center justify-end gap-2 group">
                   <FaPlus className="flex w-12 h-12 p-3 text-white text-sm bg-secondary/50 rounded-full group-[&:hover]:bg-secondary transition" />
                   <span className="text-slate-800">Buy kit now</span>
                 </m.button>
@@ -161,7 +165,7 @@ export const Swiper = () => {
         {[1, -1].map((paginateDirection) => (
           <div
             key={paginateDirection}
-            className={`absolute top-1/2 -translate-y-1/2 z-[2] w-10 aspect-square flex justify-center items-center text-xl font-bold select-none cursor-pointer bg-white rounded-full ${
+            className={`absolute top-1/2 -translate-y-1/2 z-[2] w-10 aspect-square flex justify-center items-center text-xl font-bold select-none cursor-pointer bg-white rounded-full text-slate-700 ${
               paginateDirection == 1 ? "right-3" : "left-3 scale-[-1]"
             }`}
             onClick={() => paginate(paginateDirection)}

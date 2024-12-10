@@ -6,6 +6,6 @@
 
 @layer base {
   :root {
-    @apply font-body bg-gray-50;
+    @apply font-body;
   }
 }

@@ -33,8 +33,6 @@ const articles = [
 ];
 
 export const Articles = () => {
-  const [viewStartIndex, setViewStartIndex] = useState(0);
-
   return (
     <section className="mb-24">
       <div className="container">
@@ -48,14 +46,14 @@ export const Articles = () => {
                 <img src={image} alt={title} className="w-40 h-full sm:w-52" />
               </figure>
               <div className="card-body">
-                <div className="flex justify-between text-slate-500">
+                <div className="flex justify-between text-base-content/50">
                   <span>{date}</span>
                   <span>{category}</span>
                 </div>
-                <h3 className="text-lg text-slate-800 font-display font-bold tracking-wide">{title}</h3>
-                <p className="text-slate-500">{description}</p>
-                <button className="btn btn-sm group px-6 rounded-3xl flex items-center gap-2 bg-white">
-                  <span className="text-sm text-slate-700">View more</span>
+                <h3 className="text-lg text-base-content/80 font-display font-bold tracking-wide">{title}</h3>
+                <p className="text-base-content/50">{description}</p>
+                <button className="btn btn-sm group px-6 rounded-3xl flex items-center gap-2">
+                  <span className="text-sm text-base-content/70">View more</span>
                   <FaArrowRight className="icon text-secondary group-[&:hover]:translate-x-2 transition" />
                 </button>
               </div>

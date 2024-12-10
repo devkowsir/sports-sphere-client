@@ -6,7 +6,7 @@ export const Hot = () => {
     <section className="mb-24">
       <div className="container flex flex-col items-center justify-between gap-8 lg:gap-4 lg:flex-row">
         <div className="xl:shrink-0 xl:w-6/12">
-          <img src="/images/hot.jpg" alt="" />
+          <img src="/images/hot.jpg" alt="" className="rounded-xl" />
         </div>
         <div className="xl:w-5/12">
           <SectionHeading
@@ -19,7 +19,7 @@ export const Hot = () => {
           <div className="max-w-full mt-4 flex gap-4">
             {[1, 2, 3].map((id) => (
               <div key={id}>
-                <img src={`/images/equipment-hot-${id}.jpg`} className="w-full" />
+                <img src={`/images/equipment-hot-${id}.jpg`} className="w-full rounded-lg" />
               </div>
             ))}
           </div>

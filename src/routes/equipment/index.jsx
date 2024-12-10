@@ -45,7 +45,7 @@ export const EquipmentRoute = () => {
                 </div>
               </div>
               {equipment.customizations?.length ? (
-                <table className="mt-4 table table-xs md:table-sm border">
+                <table className="mt-4 table table-xs md:table-sm border border-base-300">
                   <thead>
                     <tr>
                       <th>Customization</th>

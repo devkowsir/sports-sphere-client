@@ -17,6 +17,6 @@ export default {
   },
   plugins: [daisyui, twAnimate],
   daisyui: {
-    themes: ["cmyk"],
+    themes: ["cmyk", "dark"],
   },
 };
