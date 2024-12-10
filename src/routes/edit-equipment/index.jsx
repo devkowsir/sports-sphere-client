@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { Loading } from "../../components/loading";
 import { SectionHeading } from "../../components/section-heading";
+import { SiteName } from "../../config";
 import { editEquipment, getEquipment } from "../../lib/db";
 
 export const EditEquipmentRoute = () => {
