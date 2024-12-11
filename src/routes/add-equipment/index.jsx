@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Fade } from "react-awesome-reveal";
+import { FaPlus, FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Tooltip } from "react-tooltip";
+import { SectionHeading } from "../../components/section-heading";
 import { SiteName } from "../../config";
 import { useAuthContext } from "../../contexts/auth";
 import { addEquipment } from "../../lib/db";
