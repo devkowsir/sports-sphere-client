@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Fade } from "react-awesome-reveal";
 import { FaPlus, FaTrash } from "react-icons/fa6";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -76,184 +77,188 @@ export const EditEquipmentRoute = () => {
   }, []);
 
   return (
-    <section className="my-12">
-      <div className="container md:max-w-2xl">
-        <SectionHeading heading={"Edit Equipment"} subHeading={"Edit this equipment."} />
-        {formState ? (
-          <form className="mt-4 grid grid-cols-2 gap-4" onSubmit={handleSubmit}>
-            <label className="form-control">
-              <span className="label text-sm text-base-content/50 font-medium">Item Name</span>
-              <input
-                type="text"
-                name="itemName"
-                className="input input-sm bg-base-200 text-base-content/70"
-                onChange={handleChange}
-                value={formState.itemName}
-                required
-              />
-            </label>
-            <label className="form-control">
-              <span className="label text-sm text-base-content/50 font-medium">Category Name</span>
-              <input
-                type="text"
-                name="categoryName"
-                className="input input-sm bg-base-200 text-base-content/70"
-                onChange={handleChange}
-                value={formState.categoryName}
-                required
-              />
-            </label>
-            <label className="col-span-2 form-control">
-              <span className="label text-sm text-base-content/50 font-medium">Image</span>
-              <input
-                type="text"
-                name="image"
-                className="input input-sm bg-base-200 text-base-content/70"
-                onChange={handleChange}
-                value={formState.image}
-                required
-              />
-            </label>
-            <label className="form-control">
-              <span className="label text-sm text-base-content/50 font-medium">Price</span>
-              <input
-                type="number"
-                name="price"
-                min={0}
-                step={0.01}
-                className="input input-sm bg-base-200 text-base-content/70"
-                onChange={handleChange}
-                value={formState.price}
-                required
-              />
-            </label>
-            <label className="form-control">
-              <span className="label text-sm text-base-content/50 font-medium">Rating</span>
-              <input
-                type="number"
-                name="rating"
-                step={0.1}
-                min={0}
-                max={5}
-                className="input input-sm bg-base-200 text-base-content/70"
-                onChange={handleChange}
-                value={formState.rating}
-                required
-              />
-            </label>
-            <label className="form-control">
-              <span className="label text-sm text-base-content/50 font-medium">Processing Time</span>
-              <input
-                type="text"
-                name="processingTime"
-                className="input input-sm bg-base-200 text-base-content/70"
-                onChange={handleChange}
-                value={formState.processingTime}
-                required
-              />
-            </label>
-            <label className="form-control">
-              <span className="label text-sm text-base-content/50 font-medium">Stock Status</span>
-              <input
-                type="number"
-                name="stockStatus"
-                min={0}
-                step={1}
-                className="input input-sm bg-base-200 text-base-content/70"
-                onChange={handleChange}
-                value={formState.stockStatus}
-                required
-              />
-            </label>
-            <div className="col-span-2" style={{ marginTop: "16px" }}>
-              <p
-                className={`text-sm text-base-content/50 font-medium ${formState.customizations?.length ? "" : "mb-2"}`}
-              >
-                Customizations
-              </p>
-              {formState.customizations?.length ? (
-                <div className="flex gap-4">
-                  <span className="label grow text-base-content/50 text-sm">Name</span>
-                  <span className="label w-24 sm:w-1/6 text-base-content/50 text-sm">Cost</span>
-                  <div className="w-10 h-8"></div>
-                </div>
-              ) : null}
-              {formState.customizations
-                ? formState.customizations?.map(({ name, cost }, i) => (
-                    <div className="mb-2 flex gap-4" key={i} data-name="customization">
-                      <input
-                        type="text"
-                        name="name"
-                        data-index={i}
-                        className="input input-sm text-base-content/70 bg-base-200 grow"
-                        value={name}
-                        onChange={handleCustomizationChange}
-                      />
-                      <input
-                        type="number"
-                        name="cost"
-                        min={0}
-                        step={0.01}
-                        data-index={i}
-                        className="input input-sm text-base-content/70 bg-base-200 w-24 sm:w-1/6"
-                        value={cost}
-                        onChange={handleCustomizationChange}
-                      />
-                      <button
-                        type="button"
-                        className="btn btn-sm text-red-500"
-                        data-index={i}
-                        onClick={handleCustomizationRemove}
-                      >
-                        <FaTrash />
-                      </button>
-                    </div>
-                  ))
-                : null}
-              <button type="button" className="btn btn-sm w-max text-primary" onClick={handleCustomizationAdd}>
-                <FaPlus />
+    <Fade triggerOnce>
+      <section className="my-12">
+        <div className="container md:max-w-2xl">
+          <SectionHeading heading={"Edit Equipment"} subHeading={"Edit this equipment."} />
+          {formState ? (
+            <form className="mt-4 grid grid-cols-2 gap-4" onSubmit={handleSubmit}>
+              <label className="form-control">
+                <span className="label text-sm text-base-content/50 font-medium">Item Name</span>
+                <input
+                  type="text"
+                  name="itemName"
+                  className="input input-sm bg-base-200 text-base-content/70"
+                  onChange={handleChange}
+                  value={formState.itemName}
+                  required
+                />
+              </label>
+              <label className="form-control">
+                <span className="label text-sm text-base-content/50 font-medium">Category Name</span>
+                <input
+                  type="text"
+                  name="categoryName"
+                  className="input input-sm bg-base-200 text-base-content/70"
+                  onChange={handleChange}
+                  value={formState.categoryName}
+                  required
+                />
+              </label>
+              <label className="col-span-2 form-control">
+                <span className="label text-sm text-base-content/50 font-medium">Image</span>
+                <input
+                  type="text"
+                  name="image"
+                  className="input input-sm bg-base-200 text-base-content/70"
+                  onChange={handleChange}
+                  value={formState.image}
+                  required
+                />
+              </label>
+              <label className="form-control">
+                <span className="label text-sm text-base-content/50 font-medium">Price</span>
+                <input
+                  type="number"
+                  name="price"
+                  min={0}
+                  step={0.01}
+                  className="input input-sm bg-base-200 text-base-content/70"
+                  onChange={handleChange}
+                  value={formState.price}
+                  required
+                />
+              </label>
+              <label className="form-control">
+                <span className="label text-sm text-base-content/50 font-medium">Rating</span>
+                <input
+                  type="number"
+                  name="rating"
+                  step={0.1}
+                  min={0}
+                  max={5}
+                  className="input input-sm bg-base-200 text-base-content/70"
+                  onChange={handleChange}
+                  value={formState.rating}
+                  required
+                />
+              </label>
+              <label className="form-control">
+                <span className="label text-sm text-base-content/50 font-medium">Processing Time</span>
+                <input
+                  type="text"
+                  name="processingTime"
+                  className="input input-sm bg-base-200 text-base-content/70"
+                  onChange={handleChange}
+                  value={formState.processingTime}
+                  required
+                />
+              </label>
+              <label className="form-control">
+                <span className="label text-sm text-base-content/50 font-medium">Stock Status</span>
+                <input
+                  type="number"
+                  name="stockStatus"
+                  min={0}
+                  step={1}
+                  className="input input-sm bg-base-200 text-base-content/70"
+                  onChange={handleChange}
+                  value={formState.stockStatus}
+                  required
+                />
+              </label>
+              <div className="col-span-2" style={{ marginTop: "16px" }}>
+                <p
+                  className={`text-sm text-base-content/50 font-medium ${
+                    formState.customizations?.length ? "" : "mb-2"
+                  }`}
+                >
+                  Customizations
+                </p>
+                {formState.customizations?.length ? (
+                  <div className="flex gap-4">
+                    <span className="label grow text-base-content/50 text-sm">Name</span>
+                    <span className="label w-24 sm:w-1/6 text-base-content/50 text-sm">Cost</span>
+                    <div className="w-10 h-8"></div>
+                  </div>
+                ) : null}
+                {formState.customizations
+                  ? formState.customizations?.map(({ name, cost }, i) => (
+                      <div className="mb-2 flex gap-4" key={i} data-name="customization">
+                        <input
+                          type="text"
+                          name="name"
+                          data-index={i}
+                          className="input input-sm text-base-content/70 bg-base-200 grow"
+                          value={name}
+                          onChange={handleCustomizationChange}
+                        />
+                        <input
+                          type="number"
+                          name="cost"
+                          min={0}
+                          step={0.01}
+                          data-index={i}
+                          className="input input-sm text-base-content/70 bg-base-200 w-24 sm:w-1/6"
+                          value={cost}
+                          onChange={handleCustomizationChange}
+                        />
+                        <button
+                          type="button"
+                          className="btn btn-sm text-red-500"
+                          data-index={i}
+                          onClick={handleCustomizationRemove}
+                        >
+                          <FaTrash />
+                        </button>
+                      </div>
+                    ))
+                  : null}
+                <button type="button" className="btn btn-sm w-max text-primary" onClick={handleCustomizationAdd}>
+                  <FaPlus />
+                </button>
+              </div>
+              <label className="col-span-2 form-control">
+                <span className="label text-sm text-base-content/50 font-medium">Description</span>
+                <textarea
+                  name="description"
+                  className="textarea text-base-content/70 bg-base-200"
+                  rows={3}
+                  onChange={handleChange}
+                  value={formState.description}
+                  required
+                />
+              </label>
+              <label className="form-control">
+                <span className="label text-sm text-base-content/50 font-medium">User Name</span>
+                <input
+                  type="text"
+                  name="userName"
+                  className="input input-sm text-base-content/50 bg-base-300 cursor-not-allowed"
+                  defaultValue={formState.userName}
+                  readOnly
+                />
+              </label>
+              <label className="form-control">
+                <span className="label text-sm text-base-content/50 font-medium">User Email</span>
+                <input
+                  type="email"
+                  name="userEmail"
+                  className="input input-sm text-base-content/50 bg-base-300 cursor-not-allowed"
+                  defaultValue={formState.userEmail}
+                  readOnly
+                />
+              </label>
+              <button className="btn btn-outline" onClick={() => navigate("/my-equipments")}>
+                Cancel
               </button>
-            </div>
-            <label className="col-span-2 form-control">
-              <span className="label text-sm text-base-content/50 font-medium">Description</span>
-              <textarea
-                name="description"
-                className="textarea text-base-content/70 bg-base-200"
-                rows={3}
-                onChange={handleChange}
-                value={formState.description}
-                required
-              />
-            </label>
-            <label className="form-control">
-              <span className="label text-sm text-base-content/50 font-medium">User Name</span>
-              <input
-                type="text"
-                name="userName"
-                className="input input-sm text-base-content/50 bg-base-300 cursor-not-allowed"
-                defaultValue={formState.userName}
-                readOnly
-              />
-            </label>
-            <label className="form-control">
-              <span className="label text-sm text-base-content/50 font-medium">User Email</span>
-              <input
-                type="email"
-                name="userEmail"
-                className="input input-sm text-base-content/50 bg-base-300 cursor-not-allowed"
-                defaultValue={formState.userEmail}
-                readOnly
-              />
-            </label>
-            <button className="btn btn-outline" onClick={() => navigate("/my-equipments")}>
-              Cancel
-            </button>
-            <button className="btn btn-success">Update Equipment</button>
-          </form>
-        ) : (
-          <Loading />
-        )}
-      </div>
-    </section>
+              <button className="btn btn-success">Update Equipment</button>
+            </form>
+          ) : (
+            <Loading />
+          )}
+        </div>
+      </section>
+    </Fade>
   );
 };

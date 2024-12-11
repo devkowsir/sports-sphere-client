@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import { Tooltip } from "react-tooltip";
 import { Loading } from "../../components/loading";
 import { Rating } from "../../components/rating";
 import { SectionHeading } from "../../components/section-heading";
@@ -56,15 +57,20 @@ export const Popular = () => {
                 transform: `translateX(-${CARD_WIDTH * viewStartIndex}px)`,
               }}
             >
-              {equipments.map(({ _id, itemName, image, price, rating }) => (
+              {equipments.map(({ _id, itemName, image, price, rating }, i) => (
                 <li key={_id} className="shrink-0 w-80 pr-5">
                   <div className="card card-compact card-bordered bg-base-100">
                     <figure>
                       <img src={image} alt={itemName} />
                     </figure>
                     <div className="card-body text-center">
-                      <h3 className="text-base font-display font-bold tracking-wide">{itemName}</h3>
-                      <Rating className={"justify-center"} maxRating={5} achievedRating={rating} />
+                      <Link to={`/equipment/${_id}`}>
+                        <h3 className="text-base font-display font-bold tracking-wide">{itemName}</h3>
+                      </Link>
+                      <div data-tooltip-id={`rating-of-equipment-at-index-${i}`} data-tooltip-content={rating}>
+                        <Rating className={"justify-center"} maxRating={5} achievedRating={rating} />
+                        <Tooltip id={`rating-of-equipment-at-index-${i}`} />
+                      </div>
                       <span className="font-bold">${price}</span>
                       <Link to={`/equipment/${_id}`} className="btn btn-wide">
                         View Details

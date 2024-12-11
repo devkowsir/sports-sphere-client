@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { FaArrowLeft, FaArrowRight } from "react-icons/fa6";
+import React from "react";
+import Reveal from "react-awesome-reveal";
+import { FaArrowRight } from "react-icons/fa6";
 import { SectionHeading } from "../../components/section-heading";
 
 const articles = [
@@ -34,33 +35,35 @@ const articles = [
 
 export const Articles = () => {
   return (
-    <section className="mb-24">
-      <div className="container">
-        <div className="flex justify-between">
-          <SectionHeading heading={"Our articles"} subHeading={"Discover insights and knowledge in our articles"} />
-        </div>
-        <ul className="mt-4 grid gap-5 lg:grid-cols-2 2xl:grid-cols-3">
-          {articles.map(({ _id, image, date, category, title, description }) => (
-            <li key={_id} className="card card-compact card-side card-bordered bg-base-100">
-              <figure className="shrink-0">
-                <img src={image} alt={title} className="w-40 h-full sm:w-52" />
-              </figure>
-              <div className="card-body">
-                <div className="flex justify-between text-base-content/50">
-                  <span>{date}</span>
-                  <span>{category}</span>
+    <Reveal>
+      <section className="mb-24">
+        <div className="container">
+          <div className="flex justify-between">
+            <SectionHeading heading={"Our articles"} subHeading={"Discover insights and knowledge in our articles"} />
+          </div>
+          <ul className="mt-4 grid gap-5 lg:grid-cols-2 2xl:grid-cols-3">
+            {articles.map(({ _id, image, date, category, title, description }) => (
+              <li key={_id} className="card card-compact card-side card-bordered bg-base-100">
+                <figure className="shrink-0">
+                  <img src={image} alt={title} className="w-40 h-full sm:w-52" />
+                </figure>
+                <div className="card-body">
+                  <div className="flex justify-between text-base-content/50">
+                    <span>{date}</span>
+                    <span>{category}</span>
+                  </div>
+                  <h3 className="text-lg text-base-content/80 font-display font-bold tracking-wide">{title}</h3>
+                  <p className="text-base-content/50">{description}</p>
+                  <button className="btn btn-sm group px-6 rounded-3xl flex items-center gap-2">
+                    <span className="text-sm text-base-content/70">View more</span>
+                    <FaArrowRight className="icon text-secondary group-[&:hover]:translate-x-2 transition" />
+                  </button>
                 </div>
-                <h3 className="text-lg text-base-content/80 font-display font-bold tracking-wide">{title}</h3>
-                <p className="text-base-content/50">{description}</p>
-                <button className="btn btn-sm group px-6 rounded-3xl flex items-center gap-2">
-                  <span className="text-sm text-base-content/70">View more</span>
-                  <FaArrowRight className="icon text-secondary group-[&:hover]:translate-x-2 transition" />
-                </button>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    </Reveal>
   );
 };
