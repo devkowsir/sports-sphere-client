@@ -47,7 +47,7 @@ export const Popular = () => {
           )}
         </div>
         {equipments == null ? <Loading /> : null}
-        {equipments?.length == 0 ? <div className="text-center text-slate-700">No Equipments Found!</div> : null}
+        {equipments?.length == 0 ? <div className="text-center text-base-content/70">No Equipments Found!</div> : null}
         {equipments?.length > 0 ? (
           <div className="overflow-hidden">
             <ul

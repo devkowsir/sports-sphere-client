@@ -26,7 +26,7 @@ export const EquipmentRoute = () => {
             <div className="card card-bordered mx-auto w-96 rounded-2xl shadow-xl sm:w-full sm:card-side">
               <figure className="relative shadow-sm h-full sm:shrink-0 sm:w-1/2">
                 <img src={equipment.image} alt="" />
-                <div className="absolute bottom-4 w-full h-max px-8 flex justify-between items-center text-slate-700 sm:bottom-8">
+                <div className="absolute bottom-4 w-full h-max px-8 flex justify-between items-center text-base-content/70 sm:bottom-8">
                   <div className="flex gap-1 items-center">
                     <FaStar className="text-orange-500" />
                     <span>{equipment.rating}</span>
@@ -35,26 +35,26 @@ export const EquipmentRoute = () => {
                 </div>
               </figure>
               <div className="card-body">
-                <div className="flex items-center text-slate-700">
+                <div className="flex items-center text-base-content/70">
                   <h3 className="text-xl md:text-2xl font-display font-bold text-base-content/75">
                     {equipment.itemName}
                   </h3>
                   <div className="badge badge-secondary ml-1">{equipment.categoryName}</div>
                 </div>
-                <p className="text-sm md:text-base text-slate-500">{equipment.description}</p>
-                <div className="flex justify-between items-center text-sm text-slate-500">
+                <p className="text-sm md:text-base text-base-content/50">{equipment.description}</p>
+                <div className="flex justify-between items-center text-sm text-base-content/50">
                   <div
                     className="flex items-center gap-1"
                     data-tooltip-id="processing-time"
                     data-tooltip-content="Processing Time"
                   >
-                    <FaClock />
-                    <span className="text-slate-600">{equipment.processingTime}</span>
+                    <FaClock className="text-base-content/30" />
+                    <span className="text-base-content/60">{equipment.processingTime}</span>
                     <Tooltip id="processing-time" />
                   </div>
                   <div className="flex items-center gap-1" data-tooltip-id="in-stock" data-tooltip-content="In Stock">
-                    <FaStore />
-                    <span className="text-slate-600">{equipment.stockStatus}</span>
+                    <FaStore className="text-base-content/30" />
+                    <span className="text-base-content/60">{equipment.stockStatus}</span>
                     <Tooltip id="in-stock" />
                   </div>
                 </div>
@@ -66,7 +66,7 @@ export const EquipmentRoute = () => {
                         <th className="w-12">Cost</th>
                       </tr>
                     </thead>
-                    <tbody className="text-slate-500 text-xs md:text-sm">
+                    <tbody className="text-base-content/50 text-xs md:text-sm">
                       {(equipment.customizations ?? []).map(({ cost, name }, i) => (
                         <tr key={i}>
                           <td>{name}</td>
@@ -76,10 +76,10 @@ export const EquipmentRoute = () => {
                     </tbody>
                   </table>
                 ) : (
-                  <div className="mt-4 text-sm text-slate-500">No Customizations Offered.</div>
+                  <div className="mt-4 text-sm text-base-content/50">No Customizations Offered.</div>
                 )}
-                <div className="mt-4 flex items-center gap-2 text-sm text-slate-500">
-                  <FaUser className="text-2xl" />
+                <div className="mt-4 flex items-center gap-2 text-sm text-base-content/50">
+                  <FaUser className="text-2xl text-base-content/30" />
                   <div>
                     <p className="text-base-content/60">{equipment.userName}</p>
                     <div className="text-base-content/40">{equipment.userEmail}</div>

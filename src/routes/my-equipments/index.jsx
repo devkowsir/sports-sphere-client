@@ -107,14 +107,14 @@ export const MyEquipmentsRoute = () => {
                         <div className="badge badge-secondary ml-1">{categoryName}</div>
                       </div>
                       <p className="text-sm md:text-base text-base-content/50">{description}</p>
-                      <div className="flex justify-between items-center text-sm text-slate-500">
+                      <div className="flex justify-between items-center text-sm text-base-content/50">
                         <div
                           className="flex items-center gap-1"
                           data-tooltip-id="processing-time"
                           data-tooltip-content="Processing Time"
                         >
                           <FaClock />
-                          <span className="text-slate-600">{processingTime}</span>
+                          <span className="text-base-content/60">{processingTime}</span>
                           <Tooltip id="processing-time" />
                         </div>
                         <div
@@ -123,7 +123,7 @@ export const MyEquipmentsRoute = () => {
                           data-tooltip-content="In Stock"
                         >
                           <FaStore />
-                          <span className="text-slate-600">{stockStatus}</span>
+                          <span className="text-base-content/60">{stockStatus}</span>
                           <Tooltip id="in-stock" />
                         </div>
                       </div>
