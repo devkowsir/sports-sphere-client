@@ -36,7 +36,9 @@ export const EquipmentRoute = () => {
               </figure>
               <div className="card-body">
                 <div className="flex items-center text-slate-700">
-                  <h3 className="text-xl md:text-2xl font-display font-bold">{equipment.itemName}</h3>
+                  <h3 className="text-xl md:text-2xl font-display font-bold text-base-content/75">
+                    {equipment.itemName}
+                  </h3>
                   <div className="badge badge-secondary ml-1">{equipment.categoryName}</div>
                 </div>
                 <p className="text-sm md:text-base text-slate-500">{equipment.description}</p>
@@ -79,8 +81,8 @@ export const EquipmentRoute = () => {
                 <div className="mt-4 flex items-center gap-2 text-sm text-slate-500">
                   <FaUser className="text-2xl" />
                   <div>
-                    <p className="text-slate-600">{equipment.userName}</p>
-                    <div className="text-slate-400">{equipment.userEmail}</div>
+                    <p className="text-base-content/60">{equipment.userName}</p>
+                    <div className="text-base-content/40">{equipment.userEmail}</div>
                   </div>
                 </div>
               </div>
